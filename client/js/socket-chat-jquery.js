@@ -35,7 +35,7 @@ export function renderizarUsuarios(personas) { // [{},{},{}]
     for (var i = 0; i < personas.length; i++) {
 
         html += '<li>';
-        html += '    <a data-id="' + personas[i].id + '"  href="javascript:void(0)"><span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
+        html += '    <a data-id="' + personas[i].id + '"  href="javascript:void(0)" ><span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
         html += '</li>';
     }
 
@@ -132,8 +132,14 @@ divUsuarios.on('click', 'a', function () {
 
     if (id) {
         console.log(id);
+        //$(document).ready(function(){
+  //$(divUsuarios).click(function(){
+    //open("#myModal");
+   //$("#myModal").load("privado.html ");
+ // });
+//});
         //window.open("privado.html","privado","with=120, height=300,scrollbars=YES")
-        abrirModal();
+        //abrirModal();
         //limpiarMensaje();
 
         // formulario del que envía al tocar el usuario de la izquierda
