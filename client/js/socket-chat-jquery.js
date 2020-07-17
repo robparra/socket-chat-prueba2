@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import { socket } from './socket-chat'
+
 var params = new URLSearchParams(window.location.search);
 
 var nombre = params.get('nombre');
@@ -19,7 +22,7 @@ var divChatbox2 = $('#divChatbox2');
 
 
 // Funciones para renderizar usuarios
-function renderizarUsuarios(personas) { // [{},{},{}]
+export function renderizarUsuarios(personas) { // [{},{},{}]
 
     console.log(personas);
 
@@ -41,7 +44,7 @@ function renderizarUsuarios(personas) { // [{},{},{}]
 }
 
 
-function renderizarMensajes(mensaje, yo) {
+export function renderizarMensajes(mensaje, yo) {
 
     var html = '';
     var fecha = new Date(mensaje.fecha);
@@ -66,7 +69,7 @@ function renderizarMensajes(mensaje, yo) {
         html += '<li class="animated fadeIn">';
 
         if (mensaje.nombre !== 'Administrador') {
-           
+
         }
 
         html += '    <div class="chat-content">';
@@ -83,7 +86,7 @@ function renderizarMensajes(mensaje, yo) {
 
 }
 
-function scrollBottom() {
+export function scrollBottom() {
 
     // selectors
     var newMessage = divChatbox.children('li:last-child');
@@ -101,7 +104,7 @@ function scrollBottom() {
 }
 
 
-function scrollBottom2() {
+export function scrollBottom2() {
 
     // selectors
     var newMessage = divChatbox2.children('li:last-child');
@@ -120,46 +123,46 @@ function scrollBottom2() {
 
 
 // Listeners
-divUsuarios.on('click', 'a', function() {
+divUsuarios.on('click', 'a', function () {
 
     //limpiarMensaje();
- 
- // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
- var id = $(this).data('id');
- 
- if (id) {
- console.log(id);
- //window.open("privado.html","privado","with=120, height=300,scrollbars=YES")
- abrirModal();
- //limpiarMensaje();
- 
-// formulario del que envía al tocar el usuario de la izquierda
- formEnviar2.on('submit', function(e) {
- 
- e.preventDefault();
- 
- // verificar si el mensaje viene vacío
- // trim quita los espacios al principio y al final
- if (txtMensaje2.val().trim().length === 0) {
- return;
- }
- 
- socket.emit('mensajePrivado', {
- nombre: nombre,
- mensaje: txtMensaje2.val(),
- para: id
- }, function(mensaje) {
- txtMensaje2.val('').focus();
- renderizarMensajePrivado(mensaje, true);
- scrollBottom2();
- return;
- });
- });
- }
- return;
+
+    // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
+    var id = $(this).data('id');
+
+    if (id) {
+        console.log(id);
+        //window.open("privado.html","privado","with=120, height=300,scrollbars=YES")
+        abrirModal();
+        //limpiarMensaje();
+
+        // formulario del que envía al tocar el usuario de la izquierda
+        formEnviar2.on('submit', function (e) {
+
+            e.preventDefault();
+
+            // verificar si el mensaje viene vacío
+            // trim quita los espacios al principio y al final
+            if (txtMensaje2.val().trim().length === 0) {
+                return;
+            }
+
+            socket.emit('mensajePrivado', {
+                nombre: nombre,
+                mensaje: txtMensaje2.val(),
+                para: id
+            }, function (mensaje) {
+                txtMensaje2.val('').focus();
+                renderizarMensajePrivado(mensaje, true);
+                scrollBottom2();
+                return;
+            });
+        });
+    }
+    return;
 });
 
-formEnviar.on('submit', function(e) {
+formEnviar.on('submit', function (e) {
 
     e.preventDefault();
 
@@ -170,7 +173,7 @@ formEnviar.on('submit', function(e) {
     socket.emit('crearMensaje', {
         nombre: nombre,
         mensaje: txtMensaje.val()
-    }, function(mensaje) {
+    }, function (mensaje) {
         txtMensaje.val('').focus();
         renderizarMensajes(mensaje, true);
         scrollBottom();
