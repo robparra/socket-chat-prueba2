@@ -63,8 +63,8 @@ io.on('connection', (client) => {
   /* This function cacth the image and emit it to all users in the room
   */
   client.on('user image',function(image){
-      let persona = usuarios.getPersona(client.id);
-      client.broadcast.to(data.sala).emit('addimage', `Image shared by ${data.nombre}: `, image);
+      const persona = usuarios.getPersona(client.id);
+      client.broadcast.to(persona.sala).emit('addimage', `Image shared by ${persona.nombre}: `, image);
   });
 
 });

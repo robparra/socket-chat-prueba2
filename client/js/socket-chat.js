@@ -119,7 +119,7 @@ socket.on('mensajePrivado', function (mensaje) {
 socket.on('addimage', function (msg, base64image, mensaje) {
     $('.chat-rbox')
         .append(
-            $().append($('<b>').text(mensaje), '<p><a target="_blank" href="' + base64image + '"><img src="' + base64image + '"></a></p>'
+            $('<p class="meta">', '<span>', "prueba", "</span></p>").append($('<b>').text(msg), '<p><a target="_blank" href="' + base64image + '"><img src="' + base64image + '"></a></p>'
             )
         );
 });
