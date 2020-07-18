@@ -62,9 +62,11 @@ io.on('connection', (client) => {
     //Socket image
   /* This function cacth the image and emit it to all users in the room
   */
-  client.on('user image',function(image){
-      const persona = usuarios.getPersona(client.id);
-      client.broadcast.to(persona.sala).emit('addimage', `Image shared by ${persona.nombre}: `, image);
+  client.on('crearImagen', (data, callback) =>{
+        let persona = usuarios.getPersona(client.id);
+        let mensaje = crearMensaje(persona.nombre, data.mensaje);
+        //console.log(mensaje);
+        client.broadcast.to(persona.sala).emit('crearImagen', mensaje);
+        callback(mensaje);
   });
-
 });

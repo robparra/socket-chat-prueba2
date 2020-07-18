@@ -20,6 +20,8 @@ var txtMensaje2 = $('#txtMensaje2');
 var divChatbox = $('#divChatbox');
 var divChatbox2 = $('#divChatbox2');
 
+var imagefile = $('#imagefile')
+
 
 // Funciones para renderizar usuarios
 export function renderizarUsuarios(personas) { // [{},{},{}]
@@ -75,6 +77,52 @@ export function renderizarMensajes(mensaje, yo) {
         html += '    <div class="chat-content">';
         html += '        <h5>' + mensaje.nombre + '</h5>';
         html += '        <div class="box bg-light-' + adminClass + '">' + mensaje.mensaje + '</div>';
+        html += '    </div>';
+        html += '    <div class="chat-time">' + hora + '</div>';
+        html += '</li>';
+
+    }
+
+
+    divChatbox.append(html);
+
+}
+
+export function renderizarImagen(mensaje, yo) {
+
+    var html = '';
+    var fecha = new Date(mensaje.fecha);
+    var hora = fecha.getHours() + ':' + fecha.getMinutes();
+
+    var adminClass = 'info';
+    if (mensaje.nombre === 'Administrador') {
+        adminClass = 'danger';
+    }
+
+    if (yo) {
+        html += '<li class="reverse">';
+        html += '    <div class="chat-content">';
+        html += '        <h5>' + mensaje.nombre + '</h5>';
+        html += '        <div class="box bg-light-inverse">'
+        html += '           <img src="'+ mensaje.mensaje +'">';
+        html += '       </div>';
+        html += '    </div>';
+        html += '    <div class="chat-time">' + hora + '</div>';
+        html += '</li>';
+
+    } else {
+
+        html += '<li class="animated fadeIn">';
+
+        if (mensaje.nombre !== 'Administrador') {
+
+        }
+
+        html += '    <div class="chat-content">';
+        html += '        <h5>' + mensaje.nombre + '</h5>';
+        html += '        <div class="box bg-light">'
+        html += '           <img src="'+ mensaje.mensaje +'">';
+        html += '       </div>';
         html += '    </div>';
         html += '    <div class="chat-time">' + hora + '</div>';
         html += '</li>';
@@ -178,6 +226,20 @@ formEnviar.on('submit', function (e) {
         renderizarMensajes(mensaje, true);
         scrollBottom();
     });
+});
 
-
+imagefile.on('change', function (e){
+    var file = e.originalEvent.target.files[0];
+    var reader = new FileReader();
+        reader.onload = function (evt) {
+            socket.emit('crearImagen', {
+                nombre: nombre,
+                mensaje: evt.target.result}, 
+                function (mensaje) {
+                txtMensaje.val('').focus();
+                renderizarImagen(mensaje, true);
+                scrollBottom();
+            });
+        };
+    reader.readAsDataURL(file);
 });

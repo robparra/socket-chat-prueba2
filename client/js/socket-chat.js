@@ -6,7 +6,8 @@ import {
     renderizarUsuarios,
     renderizarMensajes,
     scrollBottom,
-    scrollBottom2
+    scrollBottom2,
+    renderizarImagen
 } from './socket-chat-jquery';
 
 export var socket = io();
@@ -55,6 +56,12 @@ socket.on('disconnect', function () {
 socket.on('crearMensaje', function (mensaje) {
     // console.log('Servidor:', mensaje);
     renderizarMensajes(mensaje, false);
+    scrollBottom();
+});
+
+socket.on('crearImagen', function (mensaje) {
+    // console.log('Servidor:', mensaje);
+    renderizarImagen(mensaje, false);
     scrollBottom();
 });
 
@@ -115,28 +122,22 @@ socket.on('mensajePrivado', function (mensaje) {
 
 });
 
-//add image to the DOM
-socket.on('addimage', function (msg, base64image, mensaje) {
-    $('.chat-rbox')
-        .append(
-            $('<p class="meta">', '<span>', "prueba", "</span></p>").append($('<b>').text(msg), '<p><a target="_blank" href="' + base64image + '"><img src="' + base64image + '"></a></p>'
-            )
-        );
-});
-
 /* function image send 
 
   arguments
   file *array* (no default value)*/
-$(function () {
-    //when the page loads completely
-    $("#imagefile").on('change', function (e) {
-        var file = e.originalEvent.target.files[0];
-        var reader = new FileReader();
+  imagefile.on('change', function (e){
+    var file = e.originalEvent.target.files[0];
+    var reader = new FileReader();
         reader.onload = function (evt) {
-            //send the image
-            socket.emit('user image', evt.target.result);
+            socket.emit('crearImagen', {
+                nombre: nombre,
+                mensaje: evt.target.result}, 
+                function (mensaje) {
+                txtMensaje.val('').focus();
+                renderizarImagen(mensaje, true);
+                scrollBottom();
+            });
         };
-        reader.readAsDataURL(file);
-    });
+    reader.readAsDataURL(file);
 });
