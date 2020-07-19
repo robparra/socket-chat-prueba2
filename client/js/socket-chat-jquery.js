@@ -37,7 +37,7 @@ export function renderizarUsuarios(personas) { // [{},{},{}]
     for (var i = 0; i < personas.length; i++) {
 
         html += '<li>';
-        html += '    <a data-id="' + personas[i].id + '"  href="javascript:void(0)"><span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
+        html += '    <a data-id="' + personas[i].id + '"  href="javascript:void(0)" id="myBtn"><span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
         html += '</li>';
     }
 
@@ -87,6 +87,9 @@ export function renderizarMensajes(mensaje, yo) {
     divChatbox.append(html);
 
 }
+
+export function renderizarMensajesPrivados(mensaje, yo) {
+    }
 
 export function renderizarImagen(mensaje, yo) {
 
@@ -180,35 +183,18 @@ divUsuarios.on('click', 'a', function () {
 
     if (id) {
         console.log(id);
-        //window.open("privado.html","privado","with=120, height=300,scrollbars=YES")
-        abrirModal();
-        //limpiarMensaje();
+        $(document).ready(function(){
+          $("#myBtn").click(function(){
+            $("#myModal").modal();
+          });
+      });
+}
+        
+      });
 
-        // formulario del que envía al tocar el usuario de la izquierda
-        formEnviar2.on('submit', function (e) {
+        
+            
 
-            e.preventDefault();
-
-            // verificar si el mensaje viene vacío
-            // trim quita los espacios al principio y al final
-            if (txtMensaje2.val().trim().length === 0) {
-                return;
-            }
-
-            socket.emit('mensajePrivado', {
-                nombre: nombre,
-                mensaje: txtMensaje2.val(),
-                para: id
-            }, function (mensaje) {
-                txtMensaje2.val('').focus();
-                renderizarMensajePrivado(mensaje, true);
-                scrollBottom2();
-                return;
-            });
-        });
-    }
-    return;
-});
 
 formEnviar.on('submit', function (e) {
 
@@ -226,6 +212,8 @@ formEnviar.on('submit', function (e) {
         renderizarMensajes(mensaje, true);
         scrollBottom();
     });
+
+
 });
 
 imagefile.on('change', function (e){
@@ -243,3 +231,5 @@ imagefile.on('change', function (e){
         };
     reader.readAsDataURL(file);
 });
+
+// });
