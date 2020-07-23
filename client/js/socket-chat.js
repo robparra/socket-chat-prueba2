@@ -15,6 +15,8 @@ export var socket = io();
 
 var params = new URLSearchParams(window.location.search);
 
+var imagefile = $('#imagefile')
+
 if (!params.has('nombre') || !params.has('sala')) {
     window.location = 'index.html';
     throw new Error('User and Room are necessary');
@@ -68,9 +70,9 @@ socket.on('listaPersona', function (personas) {
 // Mensajes privados
 socket.on('mensajePrivado', function(mensaje) {
 
-    console.log('Mensaje Privado:', mensaje);
     renderizarMensajesPrivados(mensaje, false);
-    scrollBottom2();
+    scrollBottom();
+
 
 });
 

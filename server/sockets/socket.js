@@ -50,13 +50,13 @@ io.on('connection', (client) => {
 
     // Mensajes privados
     client.on('mensajePrivado', (data, callback) => {
- // obtener a la persona que envía el mensaje
- let persona = usuarios.getPersona(client.id);
- // crear mensaje
- let mensaje = crearMensaje(persona.nombre, data.mensaje, client.id);
- // console.log(mensaje);
- client.broadcast.to(data.para).emit('mensajePrivado', mensaje);
- callback(mensaje);
+
+        let persona = usuarios.getPersona(client.id);
+
+        let mensaje = crearMensaje(persona.nombre, data.mensaje, );
+        client.broadcast.to(data.para).emit('mensajePrivado', crearMensaje(persona.nombre, data.mensaje, data.id));
+
+        callback(mensaje);
  });
 
     //Socket image

@@ -9,17 +9,9 @@ var sala = params.get('sala');
 
 // referencias de jQuery
 var divUsuarios = $('#divUsuarios');
-var divUsuarios2 = $('#divUsuarios2');
-
 var formEnviar = $('#formEnviar');
-var formEnviar2 = $('#formEnviar2');
-
 var txtMensaje = $('#txtMensaje');
-var txtMensaje2 = $('#txtMensaje2');
-
 var divChatbox = $('#divChatbox');
-var divChatbox2 = $('#divChatbox2');
-
 var imagefile = $('#imagefile')
 
 
@@ -37,7 +29,7 @@ export function renderizarUsuarios(personas) { // [{},{},{}]
     for (var i = 0; i < personas.length; i++) {
 
         html += '<li>';
-        html += '    <a data-id="' + personas[i].id + '"  href="javascript:void(0)" id="myBtn"><span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
+        html += '    <a data-id="' + personas[i].id + '"  href="javascript:void(0)" ><span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
         html += '</li>';
     }
 
@@ -89,6 +81,44 @@ export function renderizarMensajes(mensaje, yo) {
 }
 
 export function renderizarMensajesPrivados(mensaje, yo) {
+    var html = '';
+    var fecha = new Date(mensaje.fecha);
+    var hora = fecha.getHours() + ':' + fecha.getMinutes();
+
+    var adminClass = '';
+    if (mensaje.nombre === 'Administrador') {
+        adminClass = 'danger';
+    }
+
+    if (yo) {
+        html += '<li class="reverse">';
+        html += '    <div class="chat-content">';
+        html += '        <h5>' + mensaje.nombre + '</h5>';
+        html += '        <div class="box bg-light-inverse1">' + mensaje.mensaje + '</div>';
+        html += '    </div>';
+        html += '    <div class="chat-time">' + hora + '</div>';
+        html += '</li>';
+
+    } else {
+
+        html += '<li class="animated fadeIn">';
+
+        if (mensaje.nombre !== 'Administrador') {
+
+        }
+
+        html += '    <div class="chat-content">';
+        html += '        <h5>' + mensaje.nombre + '</h5>';
+        html += '        <div class="box bg-light-inverse1' + adminClass + '">' + mensaje.mensaje + '</div>';
+        html += '    </div>';
+        html += '    <div class="chat-time">' + hora + '</div>';
+        html += '</li>';
+
+    }
+
+
+    divChatbox.append(html);
+
     }
 
 export function renderizarImagen(mensaje, yo) {
@@ -155,42 +185,31 @@ export function scrollBottom() {
 }
 
 
-export function scrollBottom2() {
-
-    // selectors
-    var newMessage = divChatbox2.children('li:last-child');
-
-    // heights
-    var clientHeight = divChatbox2.prop('clientHeight');
-    var scrollTop = divChatbox2.prop('scrollTop');
-    var scrollHeight = divChatbox2.prop('scrollHeight');
-    var newMessageHeight = newMessage.innerHeight();
-    var lastMessageHeight = newMessage.prev().innerHeight() || 0;
-
-    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
-        divChatbox.scrollTop(scrollHeight);
-    }
-}
-
 
 // Listeners
 divUsuarios.on('click', 'a', function () {
 
-    //limpiarMensaje();
-
     // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
     var id = $(this).data('id');
 
-    if (id) {
+    if (txtMensaje.val().substr(0,3)==='/w ') {
+        if (id) {
         console.log(id);
-        $(document).ready(function(){
-          $("#myBtn").click(function(){
-            $("#myModal").modal();
-          });
-      });
-}
+        socket.emit('mensajePrivado', {
+        nombre: nombre,
+        mensaje: txtMensaje.val(),
+        para: id
+    }, function (mensaje) {
+        txtMensaje.val('').focus();
+        renderizarMensajesPrivados(mensaje, true);
+        scrollBottom();
+    });
+        console.log('whisper');
+       }
+    }
         
-      });
+        
+});
 
         
             
@@ -232,4 +251,3 @@ imagefile.on('change', function (e){
     reader.readAsDataURL(file);
 });
 
-// });
