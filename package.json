@@ -1,17 +1,17 @@
 {
-    "name": "10-socket-chat",
-    "version": "1.0.0",
+    "name": "@ozoneuniverse/mfe-socket-chat",
+    "version": "0.0.48",
     "description": "",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "webpack-dev": "webpack --config webpack/webpack.config.js --display-error-details --mode=development --progress --watch",
+        "build": "webpack --config webpack/webpack.config.js --display-error-details --mode=development --progress",
         "start": "node server/server.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@popperjs/core": "^2.4.4",
         "bootstrap": "^4.5.0",
         "express": "^4.16.3",
         "fs": "0.0.1-security",
