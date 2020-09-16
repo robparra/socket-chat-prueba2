@@ -192,7 +192,6 @@ divUsuarios.on('click', 'a', function () {
     // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
     var id = $(this).data('id');
 
-    if (txtMensaje.val().substr(0,3)==='/w ') {
         if (id) {
         console.log(id);
         socket.emit('mensajePrivado', {
@@ -206,8 +205,8 @@ divUsuarios.on('click', 'a', function () {
     });
         console.log('whisper');
        }
-    }
-        
+    
+    
         
 });
 
