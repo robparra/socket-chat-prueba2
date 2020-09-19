@@ -196,7 +196,7 @@ divUsuarios.on('click', 'a', function () {
         console.log(id);
         socket.emit('mensajePrivado', {
         nombre: nombre,
-        mensaje: txtMensaje.val(),
+        mensaje: "DM from "+ nombre +" = "+ txtMensaje.val(),
         para: id
     }, function (mensaje) {
         txtMensaje.val('').focus();
