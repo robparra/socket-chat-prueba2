@@ -137,7 +137,7 @@ export function renderizarImagen(mensaje, yo) {
         html += '    <div class="chat-content">';
         html += '        <h5>' + mensaje.nombre + '</h5>';
         html += '        <div class="box bg-light-inverse">'
-        html += '           <img src="'+ mensaje.mensaje +'">';
+        html += '           <img src="'+ mensaje.mensaje +'" style="height:200px;width:200px">';
         html += '       </div>';
         html += '    </div>';
         html += '    <div class="chat-time">' + hora + '</div>';
@@ -154,7 +154,7 @@ export function renderizarImagen(mensaje, yo) {
         html += '    <div class="chat-content">';
         html += '        <h5>' + mensaje.nombre + '</h5>';
         html += '        <div class="box bg-light">'
-        html += '           <img src="'+ mensaje.mensaje +'">';
+        html += '           <img src="'+ mensaje.mensaje +'" style="height:200px;width:200px">';
         html += '       </div>';
         html += '    </div>';
         html += '    <div class="chat-time">' + hora + '</div>';
@@ -187,12 +187,41 @@ export function scrollBottom() {
 
 
 // Listeners
-divUsuarios.on('click', 'a', function () {
+// divUsuarios.on('click', 'a', function () {
 
-    // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
-    var id = $(this).data('id');
+//     // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
+//     var id = $(this).data('id');
 
-        if (id) {
+//         if ('click') {
+//              document.getElementById("txtMensaje").value = "Johnny Bravo"
+//          } 
+//          if ('click'===2 ) {
+//         console.log(id);
+//         socket.emit('mensajePrivado', {
+//         nombre: nombre,
+//         mensaje: "DM from "+ nombre +" = "+ txtMensaje.val(),
+//         para: id
+//     }, function (mensaje) {
+//         txtMensaje.val('').focus();
+//         renderizarMensajesPrivados(mensaje, true);
+//         scrollBottom();
+//     });
+//         console.log('whisper');
+//        }
+    
+    
+        
+// });
+
+var action = 1;
+divUsuarios.on("click",'a', viewSomething);
+
+function viewSomething() {
+     var id = $(this).data('id');
+    if ( action == 1 ) {
+        document.getElementById("txtMensaje").value = "Dm to " + " " + id + ":";
+        action = 2;
+    } else {
         console.log(id);
         socket.emit('mensajePrivado', {
         nombre: nombre,
@@ -204,14 +233,9 @@ divUsuarios.on('click', 'a', function () {
         scrollBottom();
     });
         console.log('whisper');
-       }
-    
-    
-        
-});
-
-        
-            
+        action = 1;
+    }
+}
 
 
 formEnviar.on('submit', function (e) {
@@ -240,7 +264,8 @@ imagefile.on('change', function (e){
         reader.onload = function (evt) {
             socket.emit('crearImagen', {
                 nombre: nombre,
-                mensaje: evt.target.result}, 
+                mensaje: evt.target.result
+            }, 
                 function (mensaje) {
                 txtMensaje.val('').focus();
                 renderizarImagen(mensaje, true);
