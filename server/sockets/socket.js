@@ -43,7 +43,7 @@ io.on('connection', (client) => {
         let personaBorrada = usuarios.borrarPersona(client.id);
 
         client.broadcast.to(personaBorrada.sala).emit('crearMensaje', crearMensaje('', `${ personaBorrada.nombre } left the chat`));
-        //client.broadcast.to(personaBorrada.sala).emit('listaPersona', usuarios.getPersonasPorSala(personaBorrada.sala));
+        client.broadcast.to(personaBorrada.sala).emit('listaPersona', usuarios.getPersonasPorSala(personaBorrada.sala));
 
 
     });

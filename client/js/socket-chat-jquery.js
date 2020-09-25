@@ -23,7 +23,7 @@ export function renderizarUsuarios(personas) { // [{},{},{}]
     var html = '';
 
     html += '<li>';
-    html += '    <a href="javascript:void(0)" class="active"> Room: <span> ' + params.get('sala') + '</span></a>';
+    html += '    <a href="javascript:void(0)" class="active"> <b><H4>Room:</b></H4> <span> <b><H4>' + params.get('sala') + '</H4></b></span></a>';
     html += '</li>';
 
     for (var i = 0; i < personas.length; i++) {
@@ -45,7 +45,7 @@ export function renderizarMensajes(mensaje, yo) {
     var hora = fecha.getHours() + ':' + fecha.getMinutes();
 
     var adminClass = 'info';
-    if (mensaje.nombre === 'Administrador') {
+    if (mensaje.nombre === '') {
         adminClass = 'danger';
     }
 
@@ -192,10 +192,7 @@ export function scrollBottom() {
 //     // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
 //     var id = $(this).data('id');
 
-//         if ('click') {
-//              document.getElementById("txtMensaje").value = "Johnny Bravo"
-//          } 
-//          if ('click'===2 ) {
+        
 //         console.log(id);
 //         socket.emit('mensajePrivado', {
 //         nombre: nombre,
@@ -207,7 +204,7 @@ export function scrollBottom() {
 //         scrollBottom();
 //     });
 //         console.log('whisper');
-//        }
+       
     
     
         
@@ -216,10 +213,10 @@ export function scrollBottom() {
 var action = 1;
 divUsuarios.on("click",'a', viewSomething);
 
-function viewSomething() {
+function viewSomething(mensaje) {
      var id = $(this).data('id');
     if ( action == 1 ) {
-        document.getElementById("txtMensaje").value = "Dm to " + " " + id + ":";
+        document.getElementById("txtMensaje").value = "Type a Private DM here:";
         action = 2;
     } else {
         console.log(id);
@@ -239,7 +236,6 @@ function viewSomething() {
 
 
 formEnviar.on('submit', function (e) {
-
     e.preventDefault();
 
     if (txtMensaje.val().trim().length === 0) {
@@ -254,7 +250,6 @@ formEnviar.on('submit', function (e) {
         renderizarMensajes(mensaje, true);
         scrollBottom();
     });
-
 
 });
 

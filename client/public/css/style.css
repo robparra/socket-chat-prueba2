@@ -19,7 +19,7 @@ body {
 html {
   position: relative;
   min-height: 100%;
-  background: #ffffff;
+  background: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -59,15 +59,17 @@ h6 {
 
 h1 {
   line-height: 40px;
-  font-size: 36px; }
+  font-size: 36px;
+  background: black }
 
 h2 {
   line-height: 36px;
   font-size: 24px; }
 
 h3 {
-  line-height: 30px;
-  font-size: 21px; }
+  line-height: 40px;
+  font-size: 36px;
+  background: black }
 
 h4 {
   line-height: 22px;
@@ -937,7 +939,11 @@ File: scss
 #main-wrapper {
   width: 100%;
   overflow: hidden; }
-
+.ozone{
+  position: fixed;
+  width: 17%;
+  bottom: 0%
+}
 .boxed #main-wrapper {
   width: 100%;
   max-width: 1300px;
@@ -953,11 +959,11 @@ File: scss
 
 .page-wrapper {
   background: #000;
-  padding-bottom: 60px;
+  padding-bottom: 0px;
   position: relative; }
 
 .container-fluid {
-  padding: 25px 25px; }
+  padding: 0px 0px; }
 
 .card {
   margin-bottom: 30px; }
@@ -978,7 +984,7 @@ File: scss
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); }
 
 .fix-header .page-wrapper {
-  padding-top: 70px; }
+  padding-top: 0px; }
 
 .fix-header .right-side-panel {
   top: 70px;
@@ -1875,7 +1881,7 @@ Buttons
   font-size: 14px; }
 
 .btn-circle.btn-lg {
-  width: 50px;
+  width: 100px;
   height: 50px;
   padding: 14px 15px;
   font-size: 18px;

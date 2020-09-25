@@ -33,8 +33,10 @@
 }
 
 .chat-main-box .chat-left-aside .chat-left-inner .chatonline {
-  position: relative;
-  height  : 90%;
+  position: absolute;
+  height  : 573%;
+  width: 100%;
+  overflow-y: scroll;
 }
 
 .chat-main-box .chat-left-aside .chat-left-inner .form-control {
@@ -98,7 +100,7 @@
 .chat-main-box .chat-right-aside .chat-list {
   max-height : none;
   height     : 100%;
-  padding-top: 40px;
+  padding-top: 0px;
 }
 
 .chat-main-box .chat-right-aside .chat-list .chat-text {
