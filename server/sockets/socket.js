@@ -69,4 +69,12 @@ io.on('connection', (client) => {
         client.broadcast.to(persona.sala).emit('crearImagen', mensaje);
         callback(mensaje);
   });
+
+  client.on('crearImagenPrivada', (data, callback) =>{
+        let persona = usuarios.getPersona(client.id);
+        let mensaje = crearMensaje(persona.nombre, data.mensaje);
+        //console.log(mensaje);
+        client.broadcast.to(data.para).emit('crearImagenPrivada', crearMensaje(persona.nombre, data.mensaje, data.id));
+        callback(mensaje);
+  });
 });

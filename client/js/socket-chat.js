@@ -8,7 +8,8 @@ import {
     renderizarMensajesPrivados,
     scrollBottom,
     scrollBottom2,
-    renderizarImagen
+    renderizarImagen,
+    renderizarImagenPrivada
 } from './socket-chat-jquery';
 
 export var socket = io();
@@ -61,6 +62,12 @@ socket.on('crearImagen', function (mensaje) {
     scrollBottom();
 });
 
+socket.on('crearImagenPrivada', function (mensaje) {
+    // console.log('Servidor:', mensaje);
+    renderizarImagenPrivada(mensaje, false);
+    scrollBottom();
+});
+
 // Escuchar cambios de usuarios
 // cuando un usuario entra o sale del chat
 socket.on('listaPersona', function (personas) {
@@ -80,18 +87,18 @@ socket.on('mensajePrivado', function(mensaje) {
 
   arguments
   file *array* (no default value)*/
-  imagefile.on('change', function (e){
-    var file = e.originalEvent.target.files[0];
-    var reader = new FileReader();
-        reader.onload = function (evt) {
-            socket.emit('crearImagen', {
-                nombre: nombre,
-                mensaje: evt.target.result}, 
-                function (mensaje) {
-                txtMensaje.val('').focus();
-                renderizarImagen(mensaje, true);
-                scrollBottom();
-            });
-        };
-    reader.readAsDataURL(file);
-});
+//   imagefile.on('change', function (e){
+//     var file = e.originalEvent.target.files[0];
+//     // var reader = new FileReader();
+//     //     reader.onload = function (evt) {
+//     //         socket.emit('crearImagen', {
+//     //             nombre: nombre,
+//     //             mensaje: evt.target.result}, 
+//     //             function (mensaje) {
+//     //             txtMensaje.val('').focus();
+//     //             renderizarImagen(mensaje, true);
+//     //             scrollBottom();
+//     //         });
+//     //     };
+//     reader.readAsDataURL(file);
+// });
