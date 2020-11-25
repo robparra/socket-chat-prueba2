@@ -57,17 +57,25 @@
                                 <!-- .chat-left-panel -->
                                 <div class="chat-left-aside">
                                     <a href="index.html" class="btn"><h4><b>Leave Room</b></h4></a>
+                                    <button class="  btn-lg  btn-rounded"onclick="myFunction()">Send a Private DM</button><h4><li>To send a private DM, click the button above, then type your text and SELECT USER RECIPIENT</li>
+                                    <li>Private DM's Are highlighted in RED</li></h4>
                                     <div class="open-panel"><i class="ti-angle-right"></i></div>
                                     <div class="chat-left-inner">
                                         <div class="form-material">
                                             <input class="form-control p-20" type="text" placeholder="Find user">
                                         </div>
-                                        <ul class="chatonline style-none" id="divUsuarios"> </ul>
+                                        
+                                        <ul class="chatonline style-none" id="divUsuarios">      </ul>
+                                            
                                     </div>
 
-                                            
-
                                 </div>
+
+                                <!-- <script>
+                                    function myFunction() {
+                                      alert("To send a Private DM, write a message and click the user you want to text");
+                                    }
+                                </script> -->
 
                                 <!-- .chat-left-panel -->
                                 <!-- .chat-right-panel -->
@@ -79,10 +87,13 @@
                                                  <b>Welcome FBDC PARTICIPANTS to our GROUP MESSAGING FORUM & CHAT with Exhibitors</b>
                                                 </li>
                                                 <li>
-                                                 <b>Public and Group messages are highlighted in Blue</b>
+                                                 <b>Official Admin messages are highlighted in blue</b>
                                                 </li>
+                                                 <li>
+                                                 <b>To send a private DM, click the button above, then type your text and SELECT USER RECIPIENT
+                                                    </li>
                                                 <li>
-                                                 <b>To send a private DM(Direct Message): First, click on the user from list/ Then type your message/ then click on the user recipient again to SEND. Private DM messages are highlighted in RED</b>
+                                                 <b>Private DM's Are highlighted in RED</li></b>
                                                  </li>
                                                 <li>
                                                  <b>Press LEAVE to BACK BUTTON to navigate to another room</b>
@@ -113,19 +124,19 @@
                                             </div>
                                         </form>
 
-                               <!-- <div><script >
+                               <div><script >
                                     $(document).ready(function(){
-                                        $("#txtMensaje").emojioneArea({});
-                                    })
-                                    $(document).ready(function() {
-                                        $("#submit").click(function(e) {
-                                            e.preventDefault();
-                                            $(".emojionearea-editor").html('');
-
+                                        $("#txtMensaje").emojioneArea({
+                                            // hideSource: false,
+                                            setText:"",
                                         });
-                                    });
+                                    })
+                                   $(document).ready(function(){
+                                        $("#txtMensaje").data("emojioneArea").setText("");
+                                    })
+                                   
                                 </script></div>         
-                                 -->
+                                
 
 
                     <!--  <input  id="hola" />

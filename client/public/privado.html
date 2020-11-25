@@ -2,125 +2,94 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chat</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- Page CSS -->
-    <link href="css/pages/chat-app-page.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    
+    <title>OZONE UNIVERSE CHAT</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- page css -->
+    <link href="css/pages/login-register-lock.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/chat.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
 
     
 </head>
 
-<body class="fix-header single-column card-no-border fix-sidebar">
-
+<body class="card-no-border">
     <!-- ============================================================== -->
-    <!-- Main wrapper -->
+    <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
-
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-
-
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row animated fadeIn">
-                    <div class="col-12">
-                        <div class="card m-b-0">
-                            <!-- .chat-row -->
-                            <div class="chat-main-box">
-                                <!-- .chat-left-panel -->
-                                <div class="chat-left-aside">
-                                    <div class="open-panel"><i class="ti-angle-right"></i></div>
-                                    <div class="chat-left-inner">
-                                        <div class="form-material">
-                                            <input class="form-control p-20" type="text" placeholder="Find user">
-                                        </div>
-                                        <ul class="chatonline style-none" id="divUsuarios"> </ul>
-                                    </div>
-                                </div>
-                                <!-- .chat-left-panel -->
-                                <!-- .chat-right-panel -->
-                                <div class="chat-right-aside">
-                                    <div class="chat-main-header">
-                                        <div class="p-20 b-b">
-                                            <h1><i class="fas fa-smile"></i> OzoneChat Privado</h1>
-                                            <a href="index.html" class="btn">Leave Room</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-rbox">
-                                        <ul class="chat-list p-20" id="divChatbox"  >
-
-                                          
-
-
-                                        </ul>
-                                    </div>
-                                    <div class="card-body b-t">
-
-                                        <form id="formEnviar">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <input autocomplete="off" id="txtMensaje" placeholder="Type here..." class="form-control b-0" autofocus>
-                                                </div>
-                                                <div class="col-4 text-right">
-                                                    
-                                                    <button type="submit" class="btn btn-info btn-circle btn-lg"><i class="fa fa-paper-plane-o"></i> </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <input type="file" id="imagefile" class="imagefile"/>
-                                    </div>
-                                </div>
-                                <!-- .chat-right-panel -->
-                            </div>
-                            <!-- /.chat-row -->
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-           
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Cargando Chat...</p>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        <div class="login-register" style="background:black;">
+            <div class="login-box card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material" id="loginform" action="chat.html">
+                        <h1><i class="fas fa-smile"></i> OzoneChat Admin</h1>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <label for="loginform">Username</label>
+                                <input class="form-control" type="text" required="" placeholder="Username" name="nombre" value="OFFICIAL_ADMIN" id="admin"> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <label form="loginform">Room</label>
+                                 
+                                <select class="form-control" type="text" required="" placeholder="Room Chat" name="sala" id="form-control">
+                                  <option value="BioMarin">BioMarin</option>
+                                  <option value="CSL Behting">CSL Behting</option>
+                                  <option value="Pfizer">Pfizer</option>
+                                  <option value="Novo Nordisk">Novo Nordisk</option>
+                                  <option value="CVS">CVS</option>
+                                  <option value="Sanofi Genzyme">Sanofi Genzyme</option>
+                                  <option value="Genentech">Genentech</option>
+                                  <option value="Bayer">Bayer</option>
+                                  <option value="Spark">Spark</option>
+                                  <option value="Accredo">Accredo</option>
+                                  <option value="uniQure">uniQure</option>
+                                  <option value="Octapharma">Octapharma</option>
+                                  <option value="Takeda">Takeda</option>
+                                </select>
+                            </div>
+                        </div>
+
+     <button type="submit" id="myButton" class="btn btn-block btn-lg btn-info btn-rounded" onclick="enviarTexto()">Join</button>
+
+
+     
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-
-
-    <script src="js/socket-chat-jquery.js"></script>
-    <script src="js/socket-chat.js"></script>
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="js/event.js"></script>
+    <script src="./funciones.js"></script>
+    
+  
 </body>
 
 </html>

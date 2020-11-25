@@ -13,7 +13,8 @@ var formEnviar = $('#formEnviar');
 var txtMensaje = $('#txtMensaje');
 var divChatbox = $('#divChatbox');
 var imagefile = $('#imagefile');
-var imagefilePriv = $('#imagefilePriv')
+var imagefilePriv = $('#imagefilePriv');
+
 
 
 // Funciones para renderizar usuarios
@@ -238,13 +239,13 @@ divUsuarios.on('click', 'a', function (e) {
 
     // LLamamos a la etiqueta dentro de ancortag (a) que contiene el id
     var id = $(this).data('id');
-    if(params.get('sala')==="CVS"){
+    if(params.get('sala')==="Takeda"){
         if (id) {}
      }else
 if (id) {console.log(id);
         socket.emit('mensajePrivado', {
         nombre: nombre,
-        mensaje: "DM from "+ nombre +" = "+ txtMensaje.val(),
+        mensaje: "Private DM from "+ nombre +" = "+ txtMensaje.val(),
         para: id
     }, function (mensaje) {
         txtMensaje.val('').focus();
@@ -380,3 +381,4 @@ imagefilePriv.on('change', function (e){
     reader.readAsDataURL(file);
 
 });
+

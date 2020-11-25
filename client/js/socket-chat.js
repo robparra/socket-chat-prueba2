@@ -28,6 +28,11 @@ var usuario = {
     sala: params.get('sala')
 };
 
+var admin = {
+    nombre: params.get('nombre'),
+    sala: params.get('sala')
+};
+
 
 
 socket.on('connect', function () {
