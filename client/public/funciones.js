@@ -80,7 +80,7 @@ function watchWords()
 }
 
 function passCheck(){
-      if(prompt("Please enter your password","") == "admin"){
+      if(prompt("Please enter your password","") == "lilauniverse"){
         window.location = "privado.html";
       }else{
         alert("Wrong Password!")
