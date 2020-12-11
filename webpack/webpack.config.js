@@ -4,6 +4,7 @@ module.exports = {
     entry: {
         event: './client/js/event.js',
         socketChat: './client/js/socket-chat.js',
+        emojionearea: './client/js/emojionearea.min.js',
         //socketChatJquery: './client/js/socket-chat-jquery.js',
     },
     output: {
